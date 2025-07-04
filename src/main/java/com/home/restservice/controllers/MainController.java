@@ -83,4 +83,12 @@ public class MainController {
     public void delPerson(@RequestParam int id) {
         personRepo.deleteById(id);
     }
+
+    @PutMapping("/api/update")
+    public String updPerson(@RequestBody Person person) {
+        if (!personRepo.existsById(person.getId())){
+            return "Не существует такого клиента";
+        }
+        return personRepo.save(person).toString();
+    }
 }

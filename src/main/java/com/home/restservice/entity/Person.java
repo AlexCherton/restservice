@@ -14,7 +14,7 @@ import org.springframework.boot.autoconfigure.web.WebProperties;
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    private int id;
     private String name;
     private int age;
     private int snils;

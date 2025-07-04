@@ -17,6 +17,7 @@ public class Person {
     int id;
     private String name;
     private int age;
+    private int snils;
 
     public Person(String name, int age, int snils) {
         this.name = name;
@@ -24,8 +25,13 @@ public class Person {
         this.snils = snils;
     }
 
-
-
-    private int snils;
-
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", snils=" + snils +
+                '}';
+    }
 }

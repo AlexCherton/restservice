@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.web.WebProperties;
 @Table(name = "People")
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

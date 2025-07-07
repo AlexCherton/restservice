@@ -3,8 +3,11 @@ package com.home.restservice.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.home.restservice.dto.PersonDTO;
 import com.home.restservice.entity.Person;
 import com.home.restservice.repositories.PersonRepo;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@Tag(name = "Methods")
 public class MainController {
 
     private final ObjectMapper objectMapper;
@@ -55,9 +59,17 @@ public class MainController {
           return jsonData;
       }
   */
+    @Operation(
+            summary = "Добавляет нового клиента в БД",
+            description = "Используя клиентский DTO используя паттерн Builder собирает и добавляет в базу клиента"
+    )
     @PostMapping("/api/add")
-    public void addPerson(@RequestBody Person person) {
-        log.info("row added:"+personRepo.save(person));
+    public void addPerson(@RequestBody PersonDTO personDTO) {
+        log.info("row added:" + personRepo.save(Person.builder()
+                .age(personDTO.getAge())
+                .name(personDTO.getName())
+                .snils(personDTO.getSnils())
+                .build()));
     }
 
     @GetMapping("/api/getall")

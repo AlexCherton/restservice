@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class KafkaConfig {
     @Bean
-    public NewTopic queue() {
+    public NewTopic newTopic() {
         return new NewTopic("kafka_test", 1, (short) 1);
     }
 }

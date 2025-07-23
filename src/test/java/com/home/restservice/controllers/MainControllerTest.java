@@ -20,7 +20,7 @@ class MainControllerTest {
     private MainController mainController;
 
     @Test
-    void updPerson() {
+    void updPersonFailedTest() {
         int id = 1;
         Person person = new Person();
         person.setId(id);
@@ -28,6 +28,19 @@ class MainControllerTest {
         when (personRepo.existsById(id)).thenReturn(false);
         String expected = "Не существует такого клиента";
         assertEquals(expected, mainController.updPerson(person));
+
+    }
+    @Test
+    void updPersonTest() {
+        int id = 1;
+        Person person = new Person();
+        person.setId(id);
+        person.setName("Скажем...Полуэкт");
+
+        when (personRepo.existsById(id)).thenReturn(true);
+        when(personRepo.save(person)).thenReturn(person);
+
+        assertEquals(person.toString(),mainController.updPerson(person));
 
     }
 }

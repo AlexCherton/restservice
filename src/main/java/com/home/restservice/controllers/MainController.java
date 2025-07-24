@@ -64,12 +64,12 @@ public class MainController {
             description = "Используя клиентский DTO используя паттерн Builder собирает и добавляет в базу клиента"
     )
     @PostMapping("/api/add")
-    public void addPerson(@RequestBody PersonDTO personDTO) {
-        log.info("row added:" + personRepo.save(Person.builder()
+    public Person addPerson(@RequestBody PersonDTO personDTO) {
+        return personRepo.save(Person.builder()
                 .age(personDTO.getAge())
                 .name(personDTO.getName())
                 .snils(personDTO.getSnils())
-                .build()));
+                .build());
     }
 
     @GetMapping("/api/getall")
